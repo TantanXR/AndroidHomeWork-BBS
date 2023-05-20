@@ -1,4 +1,4 @@
-package com.example.bbs.ui.slideshow;
+package com.example.bbs.ui.personal;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

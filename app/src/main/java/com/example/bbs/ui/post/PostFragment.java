@@ -1,4 +1,4 @@
-package com.example.bbs.ui.gallery;
+package com.example.bbs.ui.post;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,10 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.bbs.R;
 import com.example.bbs.databinding.FragmentGalleryBinding;
 
-public class GalleryFragment extends Fragment {
+public class PostFragment extends Fragment {
 
     private GalleryViewModel galleryViewModel;
     private FragmentGalleryBinding binding;

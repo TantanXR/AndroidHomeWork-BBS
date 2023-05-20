@@ -1,4 +1,4 @@
-package com.example.bbs.ui.gallery;
+package com.example.bbs.ui.post;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

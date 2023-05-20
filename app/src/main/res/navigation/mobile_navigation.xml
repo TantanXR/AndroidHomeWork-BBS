@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.bbs.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:name="com.example.bbs.ui.post.PostFragment"
+        android:label="@string/menu_Post"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.bbs.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:name="com.example.bbs.ui.personal.PersonalFragment"
+        android:label="@string/menu_Personal"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
