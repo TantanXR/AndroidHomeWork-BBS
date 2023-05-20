@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.bbs.databinding.ActivityMainBinding;
@@ -50,7 +49,6 @@ public class Main2Activity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        Intent intent = getIntent();
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -66,11 +64,10 @@ public class Main2Activity extends AppCompatActivity {
 
     }
     void init(){
-        user_content=binding.navView.findViewById(R.id.user_content);
-        user_icon=binding.navView.findViewById(R.id.user_icon);
-        user_name=binding.navView.findViewById(R.id.user_name);
+        user_content = findViewById(R.id.user_content);
+        user_icon = findViewById(R.id.user_icon);
+        user_name = findViewById(R.id.user_name);
         Intent intent = getIntent();
-        user_name.setText(intent.getStringExtra("userName"));
         SQLiteOpenHelper helper = MySqliteOpenHelper.getMInstance(this);
         SQLiteDatabase database = helper.getWritableDatabase();
         if (database.isOpen()) {
@@ -80,8 +77,9 @@ public class Main2Activity extends AppCompatActivity {
                 String _content = cursor.getString(cursor.getColumnIndex("_content"));
                 Integer _image = Integer.valueOf(cursor.getString(cursor.getColumnIndex("_image")));
                 if (Objects.equals(intent.getStringExtra("userName"),_user)) {
-                    user_icon.setImageResource(_image);
-                    user_content.setText(_content);
+//                    user_name.setText(_user);
+//                    user_icon.setImageResource(_image);
+//                    user_content.setText(_content);
                 }
 
             }

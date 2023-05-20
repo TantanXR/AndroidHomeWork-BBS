@@ -21,5 +21,5 @@
         android:id="@+id/nav_slideshow"
         android:name="com.example.bbs.ui.personal.PersonalFragment"
         android:label="@string/menu_Personal"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_personal" />
 </navigation>

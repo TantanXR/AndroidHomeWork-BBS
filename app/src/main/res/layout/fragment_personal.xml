@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.personal.PersonalFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_weight="3"
+            android:scaleType="center"
+            app:srcCompat="@drawable/login" />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textSize="30dp"
+                android:layout_marginLeft="55dp"
+                android:gravity="left"
+                android:text="用户名:" />
+            <TextView
+                android:layout_width="0dp"
+                android:id="@+id/user_name_show"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:ems="10"
+                android:textSize="25dp"
+                android:gravity="left"
+                android:text="用 户 名" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textSize="30dp"
+                android:layout_marginLeft="55dp"
+                android:gravity="left"
+                android:text="密    码:" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:id="@+id/user_password_show"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:ems="10"
+                android:textSize="25dp"
+                android:gravity="left"
+                android:text="用 户 密 码" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="55dp"
+                android:layout_weight="2"
+                android:gravity="left"
+                android:text="简    介:"
+                android:textSize="30dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:id="@+id/user_content_show"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:ems="10"
+                android:textSize="25dp"
+                android:gravity="left"
+                android:text="用 户 简 介" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/Update"
+                android:layout_width="450px"
+                android:layout_height="120px"
+                android:layout_gravity="center"
+                android:layout_marginTop="-20dp"
+                android:background="@drawable/round_button"
+                android:text="修改用户信息"
+                android:textSize="50px" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
