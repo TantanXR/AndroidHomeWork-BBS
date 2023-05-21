@@ -31,15 +31,15 @@
             android:text="用户名" />
 
         <EditText
-            android:background="@drawable/round_button"
             android:id="@+id/editTextTextPersonName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="6"
+            android:background="@drawable/round_button"
             android:ems="10"
-            android:textSize="20dp"
             android:hint="请输入用户名"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="20dp" />
 
     </LinearLayout>
 
@@ -121,7 +121,7 @@
         <Button
             android:id="@+id/Login"
             android:layout_width="350px"
-            android:layout_height="100px"
+            android:layout_height="120px"
             android:layout_gravity="center"
             android:background="@drawable/round_button"
             android:text="登录"
@@ -132,7 +132,7 @@
         <Button
             android:id="@+id/Register"
             android:layout_width="350px"
-            android:layout_height="100px"
+            android:layout_height="120px"
             android:layout_gravity="center"
             android:background="@drawable/round_button"
             android:text="注册"

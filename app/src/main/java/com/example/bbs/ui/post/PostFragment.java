@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bbs.R;
 import com.example.bbs.start;
+import com.example.bbs.ui.home.HomeFragment;
 import com.example.bbs.ui.login.MySqliteOpenHelper;
 import com.example.bbs.ui.login.Register;
 
@@ -66,13 +67,25 @@ public class PostFragment extends Fragment {
                     Toast.makeText(root.getContext(),"请输入帖子正文",Toast.LENGTH_SHORT).show();
             }
             else{
-                String sql = "insert into posts(_title,_content,_writer,_createTime,_username) values(?,?,?,?,?)";
-                String got_time = getNowTime();
-                database.execSQL(sql,new Object[]{got_title,got_content,got_write,got_time,"username"});
-                Toast.makeText(root.getContext(),"发布成功",Toast.LENGTH_SHORT).show();
-                title.setText("");
-                content.setText("");
-                write.setText("");
+                boolean flag = false;
+                Cursor cursor = database.rawQuery("select * from posts",null);
+                while (cursor.moveToNext()) {
+                    String _title = cursor.getString(cursor.getColumnIndex("_title"));
+                    if (_title.equals(got_title)){
+                        Toast.makeText(root.getContext(),"标题重复，请重新想一个标题",Toast.LENGTH_SHORT).show();
+                        title.setText("");
+                        flag=true;
+                    }
+                }
+                if (flag==false){
+                    String sql = "insert into posts(_title,_content,_writer,_createTime,_username,_recentUpdateTime) values(?,?,?,?,?,?)";
+                    String got_time = getNowTime();
+                    database.execSQL(sql,new Object[]{got_title,got_content,got_write,got_time,"username",got_time});
+                    Toast.makeText(root.getContext(),"发布成功",Toast.LENGTH_SHORT).show();
+                    title.setText("");
+                    content.setText("");
+                    write.setText("");
+                }
             }
         }
         database.close();

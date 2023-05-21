@@ -1,15 +1,17 @@
 package com.example.bbs;
 
-import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import com.example.bbs.databinding.ActivityMainBinding;
+import com.example.bbs.ui.login.MySqliteOpenHelper;
 import com.example.bbs.ui.login.User;
 import com.google.android.material.navigation.NavigationView;
 
@@ -19,6 +21,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Objects;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -35,7 +39,7 @@ public class Main2Activity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        init();
+
         setSupportActionBar(binding.appBarMain.toolbar);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -46,14 +50,14 @@ public class Main2Activity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
+        init();
     }
+
     void init(){
         user_content = findViewById(R.id.user_content);
         user_icon = findViewById(R.id.user_icon);
-        user_name = findViewById(R.id.user_name);
-        Intent intent = getIntent();
-        User user = (User) intent.getSerializableExtra("User");
+        user_name =findViewById(R.id.user_name);
+        User user = findUser();
 //        user_content.setText(user.getContent());
 //        user_icon.setImageResource(user.getImage());
 //        user_name.setText(user.getUserName());
@@ -70,6 +74,36 @@ public class Main2Activity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public User findUser() {
+        Intent intent = getIntent();
+        User user = null;
+        boolean flag = false;
+        String userName = intent.getStringExtra("userName");
+        SQLiteOpenHelper helper = MySqliteOpenHelper.getMInstance(this);
+        SQLiteDatabase database = helper.getWritableDatabase();
+        if (database.isOpen()) {
+            Cursor cursor = database.rawQuery("select * from users", null);
+            while (cursor.moveToNext()) {
+                String _user = cursor.getString(cursor.getColumnIndex("_account"));
+                String _password = cursor.getString(cursor.getColumnIndex("_password"));
+                String _content = cursor.getString(cursor.getColumnIndex("_content"));
+                Integer _image = Integer.valueOf(cursor.getString(cursor.getColumnIndex("_image")));
+                if (Objects.equals(_user, userName)) {
+                    user = new User(_user, _password, _content, _image);
+                    flag = true;
+                }
+
+            }
+        }
+        if (flag){
+            return user;
+        }else{
+            System.out.println("没有找到相应对象");
+            return user;
+        }
+
     }
 
 }

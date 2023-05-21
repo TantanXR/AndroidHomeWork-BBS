@@ -64,7 +64,8 @@ public class HomeFragment extends Fragment {
             String _write = cursor.getString(cursor.getColumnIndex("_writer"));
             String _content = cursor.getString(cursor.getColumnIndex("_content"));
             String _createTime = cursor.getString(cursor.getColumnIndex("_createTime"));
-            Post post = new Post(_title,_write,_createTime,_content);
+            String _recentUpdateTime = cursor.getString(cursor.getColumnIndex("_recentUpdateTime"));
+            Post post = new Post(_title,_write,_createTime,_content,_recentUpdateTime);
             posts.add(post);
         }
     }

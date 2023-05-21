@@ -10,13 +10,13 @@ import com.example.bbs.R;
 
 import java.util.List;
 
-public class PostAdapter extends BaseAdapter {
+public class CommentAdapter extends BaseAdapter {
 
     private int resource; //列表项布局
-    private List<Post> data; //数据集合
+    private List<Comment> data; //数据集合
     private Context context;
     //构造方法：上下文对象，布局文件，数据
-    public PostAdapter(Context context, int resource, List<Post> data) {
+    public CommentAdapter(Context context, int resource, List<Comment> data) {
         this.resource = resource;
         this.data = data;
         this.context = context;
@@ -41,19 +41,17 @@ public class PostAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         //获取 position 位置上的数据对象
-        Post post = data.get(position);
-        //加载 item_list.xml 布局文件
+        Comment comment = data.get(position);
+        //加载 item_list.xml 布局文件 _postTitle text, _commentContent text, _createTime text, _username text
         View view = View.inflate(context,resource,null);
-        TextView post_title = view.findViewById(R.id.post_title);
-        TextView post_write = view.findViewById(R.id.post_write);
-        TextView post_content=view.findViewById(R.id.post_content);
-        TextView post_createTime = view.findViewById(R.id.post_createTime);
+        TextView commentContent = view.findViewById(R.id.comment_content);
+        TextView createTime=view.findViewById(R.id.comment_createTime);
+        TextView username = view.findViewById(R.id.comment_write);
 
         //将数据设置到控件上
-        post_title.setText(post.getTitle());
-        post_write.setText(post.getWrite());
-        post_content.setText(post.getContent());
-        post_createTime.setText(post.getCreateTime());
+        commentContent.setText(comment.getCommentContent());
+        createTime.setText(comment.getCreateTime());
+        username.setText(comment.getUsername());
         return view;
     }
 
