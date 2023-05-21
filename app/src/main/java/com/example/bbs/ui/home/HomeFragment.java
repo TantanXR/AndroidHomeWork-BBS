@@ -1,5 +1,6 @@
 package com.example.bbs.ui.home;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -47,6 +48,9 @@ public class HomeFragment extends Fragment {
                                     int position, long l) {
                 Post post = posts.get(position);
                 Toast.makeText(root.getContext(), post.getTitle(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(),PostDetail.class);
+                intent.putExtra("post",posts.get(position));
+                startActivity(intent);
             }
         });
         return root;
