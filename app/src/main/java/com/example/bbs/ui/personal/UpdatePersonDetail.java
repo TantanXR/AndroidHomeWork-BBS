@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.bbs.R;
 
 
-public class UpdatePassword extends AppCompatActivity {
+public class UpdatePersonDetail extends AppCompatActivity {
     private Button SureUpdatePassword,choose,cancel;
     private String UserName;
     private TextView username,content,password,password1,password2;
@@ -67,17 +67,17 @@ public class UpdatePassword extends AppCompatActivity {
         String Password1 = password1.getText().toString();
         String Password2 = password2.getText().toString();
         if (username.equals("")){
-            Toast.makeText(UpdatePassword.this,"用户名不能为空",Toast.LENGTH_SHORT).show();
+            Toast.makeText(UpdatePersonDetail.this,"用户名不能为空",Toast.LENGTH_SHORT).show();
         }else if (content.equals("")){
-            Toast.makeText(UpdatePassword.this,"用户简介不能为空",Toast.LENGTH_SHORT).show();
+            Toast.makeText(UpdatePersonDetail.this,"用户简介不能为空",Toast.LENGTH_SHORT).show();
         }else if (Password.equals("")){
-            Toast.makeText(UpdatePassword.this,"原密码不能为空",Toast.LENGTH_SHORT).show();
+            Toast.makeText(UpdatePersonDetail.this,"原密码不能为空",Toast.LENGTH_SHORT).show();
         }else if (Password1.equals("")){
-            Toast.makeText(UpdatePassword.this,"密码不能为空",Toast.LENGTH_SHORT).show();
+            Toast.makeText(UpdatePersonDetail.this,"密码不能为空",Toast.LENGTH_SHORT).show();
         }else if (Password2.equals("")){
-            Toast.makeText(UpdatePassword.this,"二次密码不能为空",Toast.LENGTH_SHORT).show();
+            Toast.makeText(UpdatePersonDetail.this,"二次密码不能为空",Toast.LENGTH_SHORT).show();
         }else{
-            SQLiteOpenHelper helper = MySqliteOpenHelper.getMInstance(UpdatePassword.this);
+            SQLiteOpenHelper helper = MySqliteOpenHelper.getMInstance(UpdatePersonDetail.this);
             SQLiteDatabase db = helper.getReadableDatabase();
             Cursor cursor = db.rawQuery("select * from users",null);
             boolean flag = false;
@@ -86,7 +86,7 @@ public class UpdatePassword extends AppCompatActivity {
                 String _password = cursor.getString(cursor.getColumnIndex("_password"));
                 if (UserName.equals(_user) && Password.equals(_password)) {
                     if (Password.equals(Password1)){
-                        Toast.makeText(UpdatePassword.this,"密码与原密码相同",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UpdatePersonDetail.this,"密码与原密码相同",Toast.LENGTH_SHORT).show();
                         password1.setText("");
                         password2.setText("");
                     }
@@ -98,18 +98,18 @@ public class UpdatePassword extends AppCompatActivity {
                         db.execSQL(sql1,new Object[]{content,UserName});
                         db.execSQL(sql2,new Object[]{image,UserName});
                         flag = true;
-                        Toast.makeText(UpdatePassword.this,"密码修改成功",Toast.LENGTH_SHORT).show();
-                        Intent ma2 = new Intent(UpdatePassword.this, PersonalFragment.class);
+                        Toast.makeText(UpdatePersonDetail.this,"密码修改成功",Toast.LENGTH_SHORT).show();
+                        Intent ma2 = new Intent(UpdatePersonDetail.this, PersonalFragment.class);
                         startActivity(ma2);
                     }else{
-                        Toast.makeText(UpdatePassword.this,"二次密码输入错误",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UpdatePersonDetail.this,"二次密码输入错误",Toast.LENGTH_SHORT).show();
                         password1.setText("");
                         password2.setText("");
                     }
                 }
             }
             if (flag==false){
-                Toast.makeText(UpdatePassword.this,"原密码输入错误",Toast.LENGTH_SHORT).show();
+                Toast.makeText(UpdatePersonDetail.this,"原密码输入错误",Toast.LENGTH_SHORT).show();
                 password.setText("");
             }
         }

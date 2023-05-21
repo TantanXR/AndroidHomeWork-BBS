@@ -1,58 +1,64 @@
-package com.example.bbs.ui.home;
+package com.example.bbs.ui.personal;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bbs.R;
+import com.example.bbs.ui.home.Post;
 import com.example.bbs.ui.post.PostSqliteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class MyPostShow extends AppCompatActivity {
+
     private List<Post> posts = new ArrayList<Post>();
-    private View root;
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if(root == null) {
-            root = inflater.inflate(R.layout.fragment_home, null);
-        }
+    private Button cancel;
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.show_my_post_list);
         init();
-        PostAdapter postAdapter = new PostAdapter(root.getContext(), R.layout.post_item_list, posts);
+        MyPostAdapter myCommentAdapter = new MyPostAdapter(this,R.layout.post_item_list,posts);
         //创建 MyAdapter 对象
-        ListView listview = root.findViewById(R.id.listPosts);
+        ListView listview = findViewById(R.id.listMyPosts);
         //设置 Adapter
-        listview.setAdapter(postAdapter);
+        listview.setAdapter(myCommentAdapter);
         //设置点击事件
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view,
-                                    int position, long l) {
-                Post post = posts.get(position);
-                Toast.makeText(root.getContext(), post.getTitle(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(),PostDetail.class);
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                //跳转到文章详情页面
+                Intent intent = new Intent(MyPostShow.this,MyPostDetail.class);
                 intent.putExtra("post",posts.get(position));
                 startActivity(intent);
             }
         });
-        return root;
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
+
     void init(){
-        SQLiteOpenHelper helper = PostSqliteOpenHelper.getMInstance(root.getContext());
+        cancel=findViewById(R.id.cancel);
+        SQLiteOpenHelper helper = PostSqliteOpenHelper.getMInstance(this);
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from posts",null);
         while (cursor.moveToNext()){
+            //未加筛选
             String _title = cursor.getString(cursor.getColumnIndex("_title"));
             String _write = cursor.getString(cursor.getColumnIndex("_writer"));
             String _content = cursor.getString(cursor.getColumnIndex("_content"));

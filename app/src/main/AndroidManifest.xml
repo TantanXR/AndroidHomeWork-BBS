@@ -26,7 +26,10 @@
         </activity>
         <activity android:name=".ui.login.Register"></activity>
         <activity android:name=".ui.login.ShowIcon"></activity>
-        <activity android:name=".ui.personal.UpdatePassword"></activity>
+        <activity android:name=".ui.personal.UpdatePersonDetail"></activity>
+        <activity android:name=".ui.personal.MyCommentDetail"></activity>
+        <activity android:name=".ui.personal.MyPostShow"></activity>
+        <activity android:name=".ui.personal.MyPostDetail"></activity>
         <activity android:name=".ui.home.PostDetail"></activity>
         <activity android:name=".ui.home.CommentDetail"></activity>
     </application>
