@@ -75,7 +75,6 @@ public class Register extends AppCompatActivity {
         String got_user = user.getText().toString();
         String got_content = content.getText().toString();
         String got_password = password.getText().toString();
-
         SQLiteOpenHelper helper = MySqliteOpenHelper.getMInstance(this);
         SQLiteDatabase database = helper.getWritableDatabase();
         if (database.isOpen()){
@@ -99,11 +98,13 @@ public class Register extends AppCompatActivity {
             }
             else if (flag==false){
                 String sql = "insert into users(_account,_password,_content,_image) values(?,?,?,?)";
+                User user1 = new User(got_user,got_password,got_content,image);
                 database.execSQL(sql,new Object[]{got_user,got_password,got_content,image});
                 Toast.makeText(this,"register success"+got_user,Toast.LENGTH_SHORT).show();
                 Log.e("register success",got_user);
                 Toast.makeText(this,"注册成功",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Register.this,start.class);
+                intent.putExtra("User",user1);
                 startActivity(intent);
             }
 

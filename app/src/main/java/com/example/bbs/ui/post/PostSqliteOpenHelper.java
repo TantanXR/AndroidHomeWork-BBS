@@ -21,7 +21,7 @@ public class PostSqliteOpenHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql ="create table posts(_title text, _content text, _writer text)";
+        String sql ="create table posts(_title text, _content text, _writer text, _createTime text, _username text)";
         db.execSQL(sql);
     }
 

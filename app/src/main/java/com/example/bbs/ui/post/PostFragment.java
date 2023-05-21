@@ -21,6 +21,7 @@ import com.example.bbs.start;
 import com.example.bbs.ui.login.MySqliteOpenHelper;
 import com.example.bbs.ui.login.Register;
 
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 
@@ -65,12 +66,23 @@ public class PostFragment extends Fragment {
                     Toast.makeText(root.getContext(),"请输入帖子正文",Toast.LENGTH_SHORT).show();
             }
             else{
-                String sql = "insert into posts(_title,_content,_writer) values(?,?,?)";
-                database.execSQL(sql,new Object[]{got_title,got_content,got_write});
+                String sql = "insert into posts(_title,_content,_writer,_createTime,_username) values(?,?,?,?,?)";
+                String got_time = getNowTime();
+                database.execSQL(sql,new Object[]{got_title,got_content,got_write,got_time,"username"});
                 Toast.makeText(root.getContext(),"发布成功",Toast.LENGTH_SHORT).show();
+                title.setText("");
+                content.setText("");
+                write.setText("");
             }
         }
         database.close();
+    }
+
+    public static String getNowTime() {
+        long getNowTimeLong = System.currentTimeMillis();
+        SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        String result = time.format(getNowTimeLong);
+        return result;
     }
 
 }

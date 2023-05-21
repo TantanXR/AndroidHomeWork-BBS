@@ -28,23 +28,22 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="发布时间:"
+                android:layout_weight="1.75"
+                android:text="发布时间："
                 android:textSize="20dp" />
             <TextView
                 android:id="@+id/post_createTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1.5"
                 android:text="XXXX:XX:XX"
-                android:textColor="#969696"
                 android:textSize="15dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="作    者:"
+                android:text="作者:"
                 android:textSize="20dp" />
             <TextView
                 android:id="@+id/post_write"
@@ -69,6 +68,7 @@
             android:layout_height="80dp"
             android:hint="帖子正文"
             android:textSize="18dp"
+            android:layout_marginLeft="15dp"
             android:id="@+id/post_content"
             android:inputType="textMultiLine">
         </TextView>

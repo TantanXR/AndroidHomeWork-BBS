@@ -1,19 +1,16 @@
 package com.example.bbs;
 
+import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.view.View;
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import com.example.bbs.databinding.ActivityMainBinding;
-import com.example.bbs.ui.login.MySqliteOpenHelper;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.bbs.ui.login.User;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -22,8 +19,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Objects;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -37,15 +32,13 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setSupportActionBar(binding.appBarMain.toolbar);
         init();
-
+        setSupportActionBar(binding.appBarMain.toolbar);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)
@@ -54,29 +47,16 @@ public class Main2Activity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
     }
     void init(){
         user_content = findViewById(R.id.user_content);
         user_icon = findViewById(R.id.user_icon);
         user_name = findViewById(R.id.user_name);
         Intent intent = getIntent();
-        SQLiteOpenHelper helper = MySqliteOpenHelper.getMInstance(this);
-        SQLiteDatabase database = helper.getWritableDatabase();
-        if (database.isOpen()) {
-            Cursor cursor = database.rawQuery("select * from users", null);
-            while (cursor.moveToNext()) {
-                String _user = cursor.getString(cursor.getColumnIndex("_account"));
-                String _content = cursor.getString(cursor.getColumnIndex("_content"));
-                Integer _image = Integer.valueOf(cursor.getString(cursor.getColumnIndex("_image")));
-                if (Objects.equals(intent.getStringExtra("userName"),_user)) {
-//                    user_name.setText(_user);
-//                    user_icon.setImageResource(_image);
-//                    user_content.setText(_content);
-                }
-
-            }
-        }
+        User user = (User) intent.getSerializableExtra("User");
+//        user_content.setText(user.getContent());
+//        user_icon.setImageResource(user.getImage());
+//        user_name.setText(user.getUserName());
     }
 
     @Override
@@ -91,4 +71,5 @@ public class Main2Activity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 }

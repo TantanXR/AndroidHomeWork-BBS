@@ -1,17 +1,19 @@
 package com.example.bbs.ui.login;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String UserName;//用户名
-    private String Name;//昵称
-    private int image;
-    private String password;
+    private String password;//密码
+    private String content;//昵称
+    private int image;//头像
 
-    public User(String userName, String name, int image, String password) {
+    public User(String userName, String password, String content, int image) {
         UserName = userName;
-        Name = name;
-        this.image = image;
         this.password = password;
+        this.content = content;
+        this.image = image;
     }
 
     public String getUserName() {
@@ -22,12 +24,20 @@ public class User {
         UserName = userName;
     }
 
-    public String getName() {
-        return Name;
+    public String getPassword() {
+        return password;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public int getImage() {
@@ -36,13 +46,5 @@ public class User {
 
     public void setImage(int image) {
         this.image = image;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
