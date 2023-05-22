@@ -3,12 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="200px"
+        android:layout_height="120px"
+        android:layout_gravity="left"
+        android:background="@drawable/round_button"
+        android:layout_marginTop="10dp"
+        android:text="返回"
+        android:textSize="50px"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
         <TextView
@@ -43,33 +52,6 @@
             android:layout_weight="1"
             android:textSize="20dp"
             android:gravity="center"
-            android:text="作    者" />
-
-        <EditText
-            android:background="@drawable/round_button"
-            android:id="@+id/post_write"
-            android:textSize="20dp"
-            android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:ems="10"
-            android:hint="请输入发布虚拟昵称" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="20dp"
-            android:gravity="center"
             android:text="内    容" />
 
         <EditText
@@ -86,13 +68,13 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/addPost"
-        android:layout_width="350px"
+        android:id="@+id/updatePost"
+        android:layout_width="400px"
         android:layout_height="120px"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:background="@drawable/round_button"
-        android:text="发  布"
+        android:text="提 交 修 改"
         android:textSize="50px"/>
 
 </LinearLayout>

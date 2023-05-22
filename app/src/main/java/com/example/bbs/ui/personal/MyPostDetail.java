@@ -15,7 +15,7 @@ import com.example.bbs.ui.home.Post;
 
 public class MyPostDetail extends AppCompatActivity {
 
-    private Button cancel;
+    private Button cancel,update_myPost;
     private TextView post_title,post_createTime,post_content,recent_update_time;
     private ImageButton show_comment;
 
@@ -38,6 +38,16 @@ public class MyPostDetail extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        update_myPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyPostDetail.this,UpdateMyPost.class);
+                Intent intent1 = getIntent();
+                Post post = (Post) intent1.getSerializableExtra("post");
+                intent.putExtra("post",post);
+                startActivity(intent);
+            }
+        });
 
     }
     void init(){
@@ -47,6 +57,7 @@ public class MyPostDetail extends AppCompatActivity {
         post_title = findViewById(R.id.post_title);
         recent_update_time = findViewById(R.id.recent_update_time);
         show_comment = findViewById(R.id.show_comment);
+        update_myPost=findViewById(R.id.update_myPost);
         Intent intent = getIntent();
         Post post = (Post) intent.getSerializableExtra("post");
         post_title.setText(post.getTitle());

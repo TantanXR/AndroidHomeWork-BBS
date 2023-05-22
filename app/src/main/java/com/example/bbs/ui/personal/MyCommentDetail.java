@@ -27,7 +27,7 @@ public class MyCommentDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_my_comment_list);
         init();
-        MyCommentAdapter myCommentAdapter = new MyCommentAdapter(this,R.layout.my_post_item_list,comments);
+        MyCommentAdapter myCommentAdapter = new MyCommentAdapter(this,R.layout.mycomment_item_list,comments);
         //创建 MyAdapter 对象
         ListView listview = findViewById(R.id.listMyComments);
         //设置 Adapter

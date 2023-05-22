@@ -30,6 +30,7 @@
         <activity android:name=".ui.personal.MyCommentDetail"></activity>
         <activity android:name=".ui.personal.MyPostShow"></activity>
         <activity android:name=".ui.personal.MyPostDetail"></activity>
+        <activity android:name=".ui.personal.UpdateMyPost"></activity>
         <activity android:name=".ui.home.PostDetail"></activity>
         <activity android:name=".ui.home.CommentDetail"></activity>
     </application>
