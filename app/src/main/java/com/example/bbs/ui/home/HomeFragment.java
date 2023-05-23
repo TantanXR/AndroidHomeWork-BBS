@@ -61,6 +61,7 @@ public class HomeFragment extends Fragment {
             Post post = new Post(_title,_write,_createTime,_content,_recentUpdateTime);
             posts.add(post);
         }
+
     }
 
 

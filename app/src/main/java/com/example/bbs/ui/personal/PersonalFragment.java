@@ -17,8 +17,8 @@ import com.example.bbs.R;
 public class PersonalFragment extends Fragment {
 
     private View root;
-    private Button update,my_comment,my_post;
-    private TextView user_name_show,user_password_show,user_content_show;
+    private Button update,my_comment,my_post,UpdatePassword;
+    private TextView user_name_show,user_content_show;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,16 +48,23 @@ public class PersonalFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        UpdatePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), UpdatePersonPassword.class);
+                startActivity(intent);
+            }
+        });
         return root;
     }
 
     void init(){
         update = root.findViewById(R.id.Update);
         user_name_show = root.findViewById(R.id.user_name_show);
-        user_password_show = root.findViewById(R.id.user_password_show);
         user_content_show = root.findViewById(R.id.user_content_show);
         my_comment = root.findViewById(R.id.my_comment);
         my_post = root.findViewById(R.id.my_post);
+        UpdatePassword = root.findViewById(R.id.UpdatePassword);
 
     }
 }

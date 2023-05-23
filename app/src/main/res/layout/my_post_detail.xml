@@ -13,6 +13,7 @@
         android:layout_width="200px"
         android:layout_height="120px"
         android:layout_gravity="left"
+        android:layout_marginTop="5dp"
         android:background="@drawable/round_button"
         android:text="返回"
         android:textSize="50px"

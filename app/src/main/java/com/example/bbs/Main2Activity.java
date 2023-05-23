@@ -94,7 +94,6 @@ public class Main2Activity extends AppCompatActivity {
                     user = new User(_user, _password, _content, _image);
                     flag = true;
                 }
-
             }
         }
         if (flag){

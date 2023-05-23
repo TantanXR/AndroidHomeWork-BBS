@@ -63,7 +63,6 @@ public class Register extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==12||requestCode==21){
             image = data.getIntExtra("image",image);
-            System.out.println("Register"+image);
             icon.setImageResource(data.getIntExtra("image",R.drawable.login));
         }
     }
@@ -87,11 +86,13 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(this,"用户名已注册"+got_user,Toast.LENGTH_SHORT).show();
                 }
             }
-            if (got_password=="" || got_user==""||image==-1){
+            if (got_password=="" || got_user==""||got_content==""||image==-1){
                 if (image==-1){
                     Toast.makeText(this,"请选择照片"+got_user,Toast.LENGTH_SHORT).show();
                 }else if (got_password==""){
                     Toast.makeText(this,"请输入密码"+got_user,Toast.LENGTH_SHORT).show();
+                }else if (got_content==""){
+                    Toast.makeText(this,"请输入用户简介"+got_user,Toast.LENGTH_SHORT).show();
                 }
                 else
                     Toast.makeText(this,"请输入用户名"+got_user,Toast.LENGTH_SHORT).show();
