@@ -15,7 +15,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.bbs.Main2Activity;
 import com.example.bbs.R;
+import com.example.bbs.ui.login.User;
 import com.example.bbs.ui.post.PostSqliteOpenHelper;
 
 import java.util.ArrayList;
@@ -24,7 +26,10 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     private List<Post> posts = new ArrayList<Post>();
     private View root;
+    private User user;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        user = ((Main2Activity)getActivity()).getUser();
+        System.out.println(user.getContent());
         if(root == null) {
             root = inflater.inflate(R.layout.fragment_home, null);
         }
@@ -43,6 +48,7 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(root.getContext(), post.getTitle(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(),PostDetail.class);
                 intent.putExtra("post",posts.get(position));
+                intent.putExtra("user",user);
                 startActivity(intent);
             }
         });
@@ -63,6 +69,5 @@ public class HomeFragment extends Fragment {
         }
 
     }
-
 
 }

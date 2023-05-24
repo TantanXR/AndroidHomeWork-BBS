@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.bbs.ui.login.MySqliteOpenHelper;
 import com.example.bbs.ui.login.Register;
+import com.example.bbs.ui.login.User;
 
 import java.util.Objects;
 
@@ -72,6 +73,7 @@ public class start extends AppCompatActivity {
         password = findViewById(R.id.editTextTextPassword);
         checkBox = findViewById(R.id.checkBox);
         cbSave = findViewById(R.id.cbSaveLogin);
+
 
     }
 
@@ -128,11 +130,21 @@ public class start extends AppCompatActivity {
             while (cursor.moveToNext()){
                 String _user = cursor.getString(cursor.getColumnIndex("_account"));
                 String _password = cursor.getString(cursor.getColumnIndex("_password"));
+                String _content = cursor.getString(cursor.getColumnIndex("_content"));
+                Integer _image = Integer.valueOf(cursor.getString(cursor.getColumnIndex("_image")));
                 if (Objects.equals(_user,got_user) && Objects.equals(_password,got_password)) {
                     Toast.makeText(this,"用户登录成功"+got_user,Toast.LENGTH_SHORT).show();
-                    Intent ma2 = new Intent(start.this,Main2Activity.class);
-                    ma2.putExtra("userName",got_user);
-                    startActivity(ma2);
+                    User user1 = new User(_user,_password,_content,_image);
+//                    Intent intent = new Intent(start.this,Main2Activity.class);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putSerializable("user", user1);
+//                    intent.putExtras(bundle);
+//                    setResult(1,intent);
+////                    finish();
+//                    startActivity(intent);
+                    Intent intent = new Intent(start.this,Main2Activity.class);
+                    intent.putExtra("user",user1);
+                    startActivity(intent);
                     flag =true;
                 }
             }

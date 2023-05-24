@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bbs.R;
 import com.example.bbs.ui.home.Post;
+import com.example.bbs.ui.login.User;
 import com.example.bbs.ui.post.PostSqliteOpenHelper;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class MyPostShow extends AppCompatActivity {
 
     private List<Post> posts = new ArrayList<Post>();
     private Button cancel;
+    private User user;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,7 @@ public class MyPostShow extends AppCompatActivity {
                 //跳转到文章详情页面
                 Intent intent = new Intent(MyPostShow.this,MyPostDetail.class);
                 intent.putExtra("post",posts.get(position));
+                intent.putExtra("user",user);
                 startActivity(intent);
             }
         });
@@ -54,20 +57,24 @@ public class MyPostShow extends AppCompatActivity {
 
     void init(){
         cancel=findViewById(R.id.cancel);
+
+        Intent intent = getIntent();
+        user = (User) intent.getSerializableExtra("user");
+
         SQLiteOpenHelper helper = PostSqliteOpenHelper.getMInstance(this);
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from posts",null);
         while (cursor.moveToNext()){
-            //未加筛选
+            String _username = cursor.getString(cursor.getColumnIndex("_username"));
             String _title = cursor.getString(cursor.getColumnIndex("_title"));
             String _write = cursor.getString(cursor.getColumnIndex("_writer"));
             String _content = cursor.getString(cursor.getColumnIndex("_content"));
             String _createTime = cursor.getString(cursor.getColumnIndex("_createTime"));
             String _recentUpdateTime = cursor.getString(cursor.getColumnIndex("_recentUpdateTime"));
-            Post post = new Post(_title,_write,_createTime,_content,_recentUpdateTime);
-            posts.add(post);
+            if (_username.equals(user.getUserName())){
+                Post post = new Post(_title,_write,_createTime,_content,_recentUpdateTime);
+                posts.add(post);
+            }
         }
     }
-
-
 }

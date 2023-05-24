@@ -12,12 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.bbs.R;
 import com.example.bbs.ui.home.CommentDetail;
 import com.example.bbs.ui.home.Post;
+import com.example.bbs.ui.login.User;
 
 public class MyPostDetail extends AppCompatActivity {
 
     private Button cancel,update_myPost;
     private TextView post_title,post_createTime,post_content,recent_update_time;
     private ImageButton show_comment;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class MyPostDetail extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MyPostDetail.this, CommentDetail.class);
                 intent.putExtra("title",post_title.getText());
+                intent.putExtra("user",user);
                 startActivity(intent);
             }
         });
@@ -45,6 +48,7 @@ public class MyPostDetail extends AppCompatActivity {
                 Intent intent1 = getIntent();
                 Post post = (Post) intent1.getSerializableExtra("post");
                 intent.putExtra("post",post);
+                intent.putExtra("user",user);
                 startActivity(intent);
             }
         });
@@ -64,6 +68,7 @@ public class MyPostDetail extends AppCompatActivity {
         post_createTime.setText("发布时间:"+post.getCreateTime());
         post_content.setText(post.getContent());
         recent_update_time.setText("最近更新:"+post.getRecentUpdateTime());
+        user = (User)intent.getSerializableExtra("user");
     }
 
 }

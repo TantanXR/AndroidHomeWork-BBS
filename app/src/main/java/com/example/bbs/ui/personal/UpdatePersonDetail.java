@@ -1,5 +1,6 @@
 package com.example.bbs.ui.personal;
 
+import android.app.Person;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.bbs.Main2Activity;
 import com.example.bbs.ui.login.MySqliteOpenHelper;
 
 import androidx.annotation.Nullable;
@@ -18,14 +21,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.bbs.R;
 import com.example.bbs.ui.login.Register;
 import com.example.bbs.ui.login.ShowIcon;
+import com.example.bbs.ui.login.User;
 
 
 public class UpdatePersonDetail extends AppCompatActivity {
     private Button SureUpdate,choose,cancel;
     private ImageView update_user_icon;
-    private String UserName;
+    private User user;
     private TextView username,content;
-    private Integer image=-1;
+    private Integer image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +47,7 @@ public class UpdatePersonDetail extends AppCompatActivity {
         SureUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //updatePassword();
+                updateUserBaseMessage();
             }
         });
 
@@ -62,8 +66,12 @@ public class UpdatePersonDetail extends AppCompatActivity {
         username=findViewById(R.id.user_name_Update);
         content=findViewById(R.id.user_content_Update);
         update_user_icon=findViewById(R.id.update_user_icon);
-//        Intent intent = getIntent();
-//        UserName = intent.getStringExtra("userName");
+        Intent intent = getIntent();
+        user = (User)intent.getSerializableExtra("user");
+        image = user.getImage();
+        update_user_icon.setImageResource(user.getImage());
+        username.setText(user.getUserName());
+        content.setText(user.getContent());
     }
 
     @Override
@@ -73,56 +81,6 @@ public class UpdatePersonDetail extends AppCompatActivity {
             image = data.getIntExtra("image",image);
             update_user_icon.setImageResource(data.getIntExtra("image",R.drawable.login));
         }
-    }
-
-    public void updateUserIcon(){
-//        if (username.equals("")){
-//            Toast.makeText(UpdatePersonDetail.this,"用户名不能为空",Toast.LENGTH_SHORT).show();
-//        }else if (content.equals("")){
-//            Toast.makeText(UpdatePersonDetail.this,"用户简介不能为空",Toast.LENGTH_SHORT).show();
-//        }else if (Password.equals("")){
-//            Toast.makeText(UpdatePersonDetail.this,"原密码不能为空",Toast.LENGTH_SHORT).show();
-//        }else if (Password1.equals("")){
-//            Toast.makeText(UpdatePersonDetail.this,"密码不能为空",Toast.LENGTH_SHORT).show();
-//        }else if (Password2.equals("")){
-//            Toast.makeText(UpdatePersonDetail.this,"二次密码不能为空",Toast.LENGTH_SHORT).show();
-//        }else{
-//            SQLiteOpenHelper helper = MySqliteOpenHelper.getMInstance(UpdatePersonDetail.this);
-//            SQLiteDatabase db = helper.getReadableDatabase();
-//            Cursor cursor = db.rawQuery("select * from users",null);
-//            boolean flag = false;
-//            while (cursor.moveToNext()){
-//                String _user = cursor.getString(cursor.getColumnIndex("_account"));
-//                String _password = cursor.getString(cursor.getColumnIndex("_password"));
-//                if (UserName.equals(_user) && Password.equals(_password)) {
-//                    if (Password.equals(Password1)){
-//                        Toast.makeText(UpdatePersonDetail.this,"密码与原密码相同",Toast.LENGTH_SHORT).show();
-//                        password1.setText("");
-//                        password2.setText("");
-//                    }
-//                    else if (Password1.equals(Password2)){
-//                        String sql = ("update users set _password=? where _account = ?");
-//                        String sql1 = ("update users set _image=? where _account = ?");
-//                        String sql2 = ("update users set _content=? where _account = ?");
-//                        db.execSQL(sql,new Object[]{Password1,UserName});
-//                        db.execSQL(sql1,new Object[]{content,UserName});
-//                        db.execSQL(sql2,new Object[]{image,UserName});
-//                        flag = true;
-//                        Toast.makeText(UpdatePersonDetail.this,"密码修改成功",Toast.LENGTH_SHORT).show();
-//                        Intent ma2 = new Intent(UpdatePersonDetail.this, PersonalFragment.class);
-//                        startActivity(ma2);
-//                    }else{
-//                        Toast.makeText(UpdatePersonDetail.this,"二次密码输入错误",Toast.LENGTH_SHORT).show();
-//                        password1.setText("");
-//                        password2.setText("");
-//                    }
-//                }
-//            }
-//            if (flag==false){
-//                Toast.makeText(UpdatePersonDetail.this,"原密码输入错误",Toast.LENGTH_SHORT).show();
-//                password.setText("");
-//            }
-//        }
     }
 
     public void updateUserBaseMessage(){
@@ -137,13 +95,14 @@ public class UpdatePersonDetail extends AppCompatActivity {
             SQLiteDatabase db = helper.getReadableDatabase();
             Cursor cursor = db.rawQuery("select * from users",null);
             while (cursor.moveToNext()){
-                String _user = cursor.getString(cursor.getColumnIndex("_account"));
-                if (_user.equals(UserName)){
+                String _user = cursor.getString(cursor.getColumnIndex("_ay count"));
+                if (_user.equals(user.getUserName())){
                     String sql = ("update users set _account=?,_image=?,_content=? where _account = ?");
-                    db.execSQL(sql,new Object[]{username,image,content,UserName});
+                    db.execSQL(sql,new Object[]{username,image,content,user.getUserName()});
                     Toast.makeText(UpdatePersonDetail.this,"用户信息修改成功",Toast.LENGTH_SHORT).show();
-                    Intent ma2 = new Intent(UpdatePersonDetail.this, PersonalFragment.class);
-                    startActivity(ma2);
+                    User user = new User(username,this.user.getPassword(),content,image);
+                    //((Main2Activity)getActivity()).setUser(user);
+                    finish();
                 }
             }
         }

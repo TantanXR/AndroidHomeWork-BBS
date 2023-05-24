@@ -11,10 +11,16 @@ import android.widget.TextView;
 
 
 import com.example.bbs.databinding.ActivityMainBinding;
+import com.example.bbs.ui.home.HomeFragment;
 import com.example.bbs.ui.login.MySqliteOpenHelper;
 import com.example.bbs.ui.login.User;
+import com.example.bbs.ui.personal.PersonalFragment;
+import com.example.bbs.ui.post.PostFragment;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -31,6 +37,7 @@ public class Main2Activity extends AppCompatActivity {
     private ImageView user_icon;
     private TextView user_content;
     private TextView user_name;
+    protected User user;
 
 
     @Override
@@ -53,14 +60,12 @@ public class Main2Activity extends AppCompatActivity {
         init();
     }
 
+
     void init(){
-        user_content = findViewById(R.id.user_content);
-        user_icon = findViewById(R.id.user_icon);
-        user_name =findViewById(R.id.user_name);
-        User user = findUser();
-//        user_content.setText(user.getContent());
-//        user_icon.setImageResource(user.getImage());
-//        user_name.setText(user.getUserName());
+        Intent intent = getIntent();
+        user = (User) intent.getSerializableExtra("user");
+        System.out.println(user.getUserName());
+        setUser(user);
     }
 
     @Override
@@ -76,33 +81,13 @@ public class Main2Activity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public User findUser() {
-        Intent intent = getIntent();
-        User user = null;
-        boolean flag = false;
-        String userName = intent.getStringExtra("userName");
-        SQLiteOpenHelper helper = MySqliteOpenHelper.getMInstance(this);
-        SQLiteDatabase database = helper.getWritableDatabase();
-        if (database.isOpen()) {
-            Cursor cursor = database.rawQuery("select * from users", null);
-            while (cursor.moveToNext()) {
-                String _user = cursor.getString(cursor.getColumnIndex("_account"));
-                String _password = cursor.getString(cursor.getColumnIndex("_password"));
-                String _content = cursor.getString(cursor.getColumnIndex("_content"));
-                Integer _image = Integer.valueOf(cursor.getString(cursor.getColumnIndex("_image")));
-                if (Objects.equals(_user, userName)) {
-                    user = new User(_user, _password, _content, _image);
-                    flag = true;
-                }
-            }
-        }
-        if (flag){
-            return user;
-        }else{
-            System.out.println("没有找到相应对象");
-            return user;
-        }
-
+    public User getUser(){
+        return user;
     }
+
+    public void setUser(User user){
+        this.user = user;
+    }
+
 
 }

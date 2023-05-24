@@ -1,5 +1,6 @@
 package com.example.bbs.ui.personal;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.bbs.R;
 import com.example.bbs.ui.home.Comment;
 import com.example.bbs.ui.home.CommentSqliteOpenHelper;
+import com.example.bbs.ui.login.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ public class MyCommentDetail extends AppCompatActivity {
 
     private List<Comment> comments = new ArrayList<Comment>();
     private Button cancel;
+    private User user;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +53,10 @@ public class MyCommentDetail extends AppCompatActivity {
     }
     void init(){
         cancel=findViewById(R.id.cancel);
+
+        Intent intent = getIntent();
+        user = (User)intent.getSerializableExtra("user");
+
         SQLiteOpenHelper helper = CommentSqliteOpenHelper.getMInstance(this);
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from comments",null);
@@ -58,10 +65,11 @@ public class MyCommentDetail extends AppCompatActivity {
             String _username = cursor.getString(cursor.getColumnIndex("_username"));
             String _commentContent = cursor.getString(cursor.getColumnIndex("_commentContent"));
             String _createTime = cursor.getString(cursor.getColumnIndex("_createTime"));
-            if (_username.equals("匿名用户提交评论")){
+            if (_username.equals(user.getUserName())){
                 Comment comment = new Comment(_postTitle, _commentContent, _createTime, _username);
                 comments.add(comment);
             }
         }
+
     }
 }

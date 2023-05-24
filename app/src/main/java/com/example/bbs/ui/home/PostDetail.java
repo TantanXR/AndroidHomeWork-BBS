@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bbs.R;
+import com.example.bbs.ui.login.User;
 
 import java.text.SimpleDateFormat;
 
@@ -23,6 +24,7 @@ public class PostDetail  extends AppCompatActivity {
     private TextView post_title,post_write,post_createTime,post_content,recent_update_time;
     private EditText comment_content;
     private ImageButton show_comment;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class PostDetail  extends AppCompatActivity {
         post_createTime.setText("发布时间:"+post.getCreateTime());
         post_content.setText(post.getContent());
         recent_update_time.setText("最近更新:"+post.getRecentUpdateTime());
+        user=(User)intent.getSerializableExtra("user");
     }
 
     void addComment(){
@@ -78,8 +81,7 @@ public class PostDetail  extends AppCompatActivity {
             SQLiteOpenHelper helper = CommentSqliteOpenHelper.getMInstance(this);
             SQLiteDatabase database = helper.getReadableDatabase();
             String sql = "insert into comments(_postTitle, _commentContent, _createTime, _username) values(?,?,?,?)";
-            String got_time = getNowTime();
-            database.execSQL(sql,new Object[]{post_title.getText(),content,getNowTime(),"匿名用户提交评论"});
+            database.execSQL(sql,new Object[]{post_title.getText(),content,getNowTime(),user.getUserName()});
             Toast.makeText(this,"评论发布成功",Toast.LENGTH_SHORT).show();
             comment_content.setText("");
         }

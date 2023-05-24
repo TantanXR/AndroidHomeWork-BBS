@@ -12,8 +12,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bbs.Main2Activity;
 import com.example.bbs.R;
 import com.example.bbs.ui.home.Post;
+import com.example.bbs.ui.login.User;
 import com.example.bbs.ui.post.PostSqliteOpenHelper;
 
 import java.io.Serializable;
@@ -23,10 +25,12 @@ public class UpdateMyPost extends AppCompatActivity {
     private Button cancel,updatePost;
     private EditText title,content;
     private Post post;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.update_my_post);
         init();
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +62,8 @@ public class UpdateMyPost extends AppCompatActivity {
             content.setText(post.getContent());
         }
         database.close();
+        user = (User)intent.getSerializableExtra("user");
+
     }
 
     public void updatePost(View view){
@@ -92,6 +98,7 @@ public class UpdateMyPost extends AppCompatActivity {
                     database.execSQL(sql,new Object[]{got_title,got_content,getNowTime(),post.getTitle()});
                     Toast.makeText(this,"修改成功",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(UpdateMyPost.this,MyPostShow.class);
+                    intent.putExtra("user",user);
                     startActivity(intent);
                 }
             }

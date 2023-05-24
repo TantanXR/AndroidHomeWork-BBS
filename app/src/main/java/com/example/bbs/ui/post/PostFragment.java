@@ -16,11 +16,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.bbs.Main2Activity;
 import com.example.bbs.R;
 import com.example.bbs.start;
 import com.example.bbs.ui.home.HomeFragment;
 import com.example.bbs.ui.login.MySqliteOpenHelper;
 import com.example.bbs.ui.login.Register;
+import com.example.bbs.ui.login.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Objects;
@@ -30,10 +32,11 @@ public class PostFragment extends Fragment {
 
     private View root;
     private Button AddPost;
+    private User user;
 
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        user = ((Main2Activity)getActivity()).getUser();
         if(root == null) {
             root = inflater.inflate(R.layout.fragment_post, null);
         }
@@ -80,8 +83,8 @@ public class PostFragment extends Fragment {
                 if (flag==false){
                     String sql = "insert into posts(_title,_content,_writer,_createTime,_username,_recentUpdateTime) values(?,?,?,?,?,?)";
                     String got_time = getNowTime();
-                    database.execSQL(sql,new Object[]{got_title,got_content,got_write,got_time,"username",got_time});
-                    Toast.makeText(root.getContext(),"发布成功",Toast.LENGTH_SHORT).show();
+                    database.execSQL(sql,new Object[]{got_title,got_content,got_write,got_time,user.getUserName(),got_time});
+                    Toast.makeText(root.getContext(),user.getUserName()+"发布成功",Toast.LENGTH_SHORT).show();
                     title.setText("");
                     content.setText("");
                     write.setText("");

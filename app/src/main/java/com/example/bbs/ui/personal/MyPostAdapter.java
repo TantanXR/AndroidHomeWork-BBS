@@ -48,11 +48,12 @@ public class MyPostAdapter extends BaseAdapter {
         TextView post_title = view.findViewById(R.id.post_title);
         TextView post_content=view.findViewById(R.id.post_content);
         TextView post_createTime = view.findViewById(R.id.post_createTime);
-
+        TextView post_write = view.findViewById(R.id.post_write);
         //将数据设置到控件上
         post_title.setText(post.getTitle());
         post_content.setText(post.getContent());
         post_createTime.setText(post.getCreateTime());
+        post_write.setText(post.getWrite());
         return view;
     }
 
