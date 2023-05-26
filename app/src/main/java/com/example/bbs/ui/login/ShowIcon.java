@@ -21,7 +21,9 @@ public class ShowIcon extends AppCompatActivity {
     GridView gridView;
     SimpleAdapter simpleAdapter;
     List<Map<String,Object>> list;
-    int[] images={R.drawable.image02,R.drawable.iamge03,R.drawable.image05,R.drawable.image06,R.drawable.iamge04};
+    int[] images={R.drawable.image02,R.drawable.iamge03,R.drawable.image05,R.drawable.image06,R.drawable.iamge04,
+            R.drawable.image07,R.drawable.image08,R.drawable.image09,R.drawable.image10,R.drawable.image11,R.drawable.image12,
+            R.drawable.image13,R.drawable.image14,R.drawable.image15};
 
     @Override
     protected void onCreate(@Nullable  Bundle savedInstanceState) {
