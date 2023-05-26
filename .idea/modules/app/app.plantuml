@@ -1,0 +1,254 @@
+@startuml
+
+title __BBS.APP's Class Diagram__\n
+
+  namespace com.example.bbs {
+    class com.example.bbs.BuildConfig {
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    class com.example.bbs.Main2Activity {
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    class com.example.bbs.start {
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.home {
+      class com.example.bbs.ui.home.Comment {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.home {
+      class com.example.bbs.ui.home.CommentAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.home {
+      class com.example.bbs.ui.home.CommentDetail {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.home {
+      class com.example.bbs.ui.home.CommentSqliteOpenHelper {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.home {
+      class com.example.bbs.ui.home.HomeFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.home {
+      class com.example.bbs.ui.home.Post {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.home {
+      class com.example.bbs.ui.home.PostAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.home {
+      class com.example.bbs.ui.home.PostDetail {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.login {
+      class com.example.bbs.ui.login.MySqliteOpenHelper {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.login {
+      class com.example.bbs.ui.login.Register {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.login {
+      class com.example.bbs.ui.login.ShowIcon {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.login {
+      class com.example.bbs.ui.login.User {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.personal {
+      class com.example.bbs.ui.personal.MyCommentAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.personal {
+      class com.example.bbs.ui.personal.MyCommentDetail {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.personal {
+      class com.example.bbs.ui.personal.MyPostAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.personal {
+      class com.example.bbs.ui.personal.MyPostDetail {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.personal {
+      class com.example.bbs.ui.personal.MyPostShow {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.personal {
+      class com.example.bbs.ui.personal.PersonalFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.personal {
+      class com.example.bbs.ui.personal.UpdateMyPost {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.personal {
+      class com.example.bbs.ui.personal.UpdatePersonDetail {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.personal {
+      class com.example.bbs.ui.personal.UpdatePersonPassword {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.post {
+      class com.example.bbs.ui.post.PostFragment {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.post {
+      class com.example.bbs.ui.post.PostSqliteOpenHelper {
+      }
+    }
+  }
+  
+
+  com.example.bbs.Main2Activity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.bbs.Main2Activity o-- com.example.bbs.ui.login.User : user
+  com.example.bbs.Main2Activity o-- com.example.bbs.databinding.ActivityMainBinding : binding
+  com.example.bbs.start -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.bbs.ui.home.Comment .up.|> java.io.Serializable
+  com.example.bbs.ui.home.CommentAdapter -up-|> android.widget.BaseAdapter
+  com.example.bbs.ui.home.CommentDetail -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.bbs.ui.home.CommentSqliteOpenHelper -up-|> android.database.sqlite.SQLiteOpenHelper
+  com.example.bbs.ui.home.HomeFragment -up-|> androidx.fragment.app.Fragment
+  com.example.bbs.ui.home.HomeFragment o-- com.example.bbs.ui.login.User : user
+  com.example.bbs.ui.home.Post .up.|> java.io.Serializable
+  com.example.bbs.ui.home.PostAdapter -up-|> android.widget.BaseAdapter
+  com.example.bbs.ui.home.PostDetail -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.bbs.ui.home.PostDetail o-- com.example.bbs.ui.login.User : user
+  com.example.bbs.ui.login.MySqliteOpenHelper -up-|> android.database.sqlite.SQLiteOpenHelper
+  com.example.bbs.ui.login.Register -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.bbs.ui.login.ShowIcon -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.bbs.ui.login.User .up.|> java.io.Serializable
+  com.example.bbs.ui.personal.MyCommentAdapter -up-|> android.widget.BaseAdapter
+  com.example.bbs.ui.personal.MyCommentDetail -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.bbs.ui.personal.MyCommentDetail o-- com.example.bbs.ui.login.User : user
+  com.example.bbs.ui.personal.MyPostAdapter -up-|> android.widget.BaseAdapter
+  com.example.bbs.ui.personal.MyPostDetail -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.bbs.ui.personal.MyPostDetail o-- com.example.bbs.ui.login.User : user
+  com.example.bbs.ui.personal.MyPostShow -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.bbs.ui.personal.MyPostShow o-- com.example.bbs.ui.login.User : user
+  com.example.bbs.ui.personal.PersonalFragment -up-|> androidx.fragment.app.Fragment
+  com.example.bbs.ui.personal.PersonalFragment o-- com.example.bbs.ui.login.User : user
+  com.example.bbs.ui.personal.UpdateMyPost -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.bbs.ui.personal.UpdateMyPost o-- com.example.bbs.ui.home.Post : post
+  com.example.bbs.ui.personal.UpdateMyPost o-- com.example.bbs.ui.login.User : user
+  com.example.bbs.ui.personal.UpdatePersonDetail -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.bbs.ui.personal.UpdatePersonDetail o-- com.example.bbs.ui.login.User : user
+  com.example.bbs.ui.personal.UpdatePersonPassword -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.bbs.ui.personal.UpdatePersonPassword o-- com.example.bbs.ui.login.User : user
+  com.example.bbs.ui.post.PostFragment -up-|> androidx.fragment.app.Fragment
+  com.example.bbs.ui.post.PostFragment o-- com.example.bbs.ui.login.User : user
+  com.example.bbs.ui.post.PostSqliteOpenHelper -up-|> android.database.sqlite.SQLiteOpenHelper
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
