@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,6 +20,7 @@ import com.example.bbs.ui.login.MySqliteOpenHelper;
 import com.example.bbs.ui.login.User;
 import com.example.bbs.ui.personal.PersonalFragment;
 import com.example.bbs.ui.post.PostFragment;
+import com.example.bbs.ui.setting.MusicShow;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.Nullable;
@@ -41,10 +44,14 @@ public class Main2Activity extends AppCompatActivity {
     private TextView user_name,user_content;
     private ImageView user_icon;
     public static Main2Activity instance = null;
+    public static MediaPlayer mediaPlayer = null;
+    public static Thread thread = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mediaPlayer = new MediaPlayer();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -77,6 +84,8 @@ public class Main2Activity extends AppCompatActivity {
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
         setUser(user);
+        mediaPlayer = MediaPlayer.create(Main2Activity.this,R.raw.music01);
+        mediaPlayer.start();
     }
 
     @Override

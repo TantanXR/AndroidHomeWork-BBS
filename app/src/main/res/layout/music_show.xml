@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.setting.MusicShow">
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="200px"
+        android:layout_height="120px"
+        android:layout_gravity="left"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_button"
+        android:text="返回"
+        android:textSize="50px"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="4">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/Music_alreadyTimeLength"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_width="180dp"
+                android:text="已播时长： "
+                android:textSize="20dp"
+                android:layout_height="50dp">
+            </TextView>
+            <TextView
+                android:id="@+id/Music_timeLength"
+                android:layout_marginLeft="10dp"
+                android:layout_width="180dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:text="总时长："
+                android:textSize="20dp"
+                android:layout_marginTop="5dp">
+            </TextView>
+        </LinearLayout>
+        <ProgressBar
+            android:id="@+id/MusicPlayBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="-20dp"
+            android:max="100"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/list_music" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="4">
+        <Button
+            android:id="@+id/start_music"
+            android:layout_width="100dp"
+            android:translationX="50dp"
+            android:text="播放音乐"
+            android:textSize="15dp"
+            android:layout_height="50dp">
+        </Button>
+
+        <Button
+            android:id="@+id/Stop_Music"
+            android:translationX="120dp"
+            android:layout_width="100dp"
+            android:text="停止播放"
+            android:textSize="15dp"
+            android:layout_height="50dp">
+        </Button>
+
+    </LinearLayout>
+
+
+</LinearLayout>

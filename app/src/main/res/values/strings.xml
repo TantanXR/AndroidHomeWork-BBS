@@ -8,6 +8,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">首页</string>
+    <string name="menu_setting">设置</string>
     <string name="menu_Post">发帖中心</string>
     <string name="menu_Personal">个人信息中心</string>
 </resources>

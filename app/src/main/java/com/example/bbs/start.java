@@ -135,13 +135,6 @@ public class start extends AppCompatActivity {
                 if (Objects.equals(_user,got_user) && Objects.equals(_password,got_password)) {
                     Toast.makeText(this,"用户登录成功"+got_user,Toast.LENGTH_SHORT).show();
                     User user1 = new User(_user,_password,_content,_image);
-//                    Intent intent = new Intent(start.this,Main2Activity.class);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putSerializable("user", user1);
-//                    intent.putExtras(bundle);
-//                    setResult(1,intent);
-////                    finish();
-//                    startActivity(intent);
                     Intent intent = new Intent(start.this,Main2Activity.class);
                     intent.putExtra("user",user1);
                     startActivity(intent);
