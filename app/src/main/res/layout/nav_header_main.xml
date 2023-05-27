@@ -7,7 +7,7 @@
     android:background="@drawable/side_nav_bar"
     android:gravity="bottom"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingLeft="10dp"
     android:paddingTop="10dp"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -18,10 +18,10 @@
         android:layout_marginBottom="25dp"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
             android:id="@+id/user_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:contentDescription="@string/nav_header_desc"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             app:srcCompat="@mipmap/ic_launcher_round" />
@@ -29,9 +29,10 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="10dp"
             android:layout_height="wrap_content">
-            <androidx.appcompat.widget.AppCompatTextView
+
+            <TextView
                 android:id="@+id/user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -41,7 +42,7 @@
                 android:textStyle="bold"
                 tools:ignore="DuplicateIds" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/user_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

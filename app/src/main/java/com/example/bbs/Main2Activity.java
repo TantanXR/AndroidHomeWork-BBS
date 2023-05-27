@@ -6,7 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -34,11 +36,9 @@ public class Main2Activity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    private ImageView user_icon;
-    private TextView user_content;
-    private TextView user_name;
     protected User user;
-
+    private TextView user_name,user_content;
+    private ImageView user_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,19 +58,27 @@ public class Main2Activity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         init();
+
+        NavigationView navigationView1 = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        user_icon = (ImageView) headerView.findViewById(R.id.user_icon);
+        user_icon.setImageResource(user.getImage());
+        user_name = (TextView) headerView.findViewById(R.id.user_name);
+        user_name.setText(user.getUserName());
+        user_content = (TextView) headerView.findViewById(R.id.user_content);
+        user_content.setText(user.getContent());
     }
 
 
     void init(){
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
-        System.out.println(user.getUserName());
         setUser(user);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        //getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
