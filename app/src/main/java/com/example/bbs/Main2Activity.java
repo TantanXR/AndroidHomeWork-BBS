@@ -20,6 +20,7 @@ import com.example.bbs.ui.personal.PersonalFragment;
 import com.example.bbs.ui.post.PostFragment;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -39,6 +40,7 @@ public class Main2Activity extends AppCompatActivity {
     protected User user;
     private TextView user_name,user_content;
     private ImageView user_icon;
+    public static Main2Activity instance = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,7 @@ public class Main2Activity extends AppCompatActivity {
         user_name.setText(user.getUserName());
         user_content = (TextView) headerView.findViewById(R.id.user_content);
         user_content.setText(user.getContent());
+        instance = this;
     }
 
 

@@ -95,14 +95,18 @@ public class UpdatePersonDetail extends AppCompatActivity {
             SQLiteDatabase db = helper.getReadableDatabase();
             Cursor cursor = db.rawQuery("select * from users",null);
             while (cursor.moveToNext()){
-                String _user = cursor.getString(cursor.getColumnIndex("_ay count"));
+                String _user = cursor.getString(cursor.getColumnIndex("_account"));
                 if (_user.equals(user.getUserName())){
                     String sql = ("update users set _account=?,_image=?,_content=? where _account = ?");
                     db.execSQL(sql,new Object[]{username,image,content,user.getUserName()});
                     Toast.makeText(UpdatePersonDetail.this,"用户信息修改成功",Toast.LENGTH_SHORT).show();
                     User user = new User(username,this.user.getPassword(),content,image);
-                    //((Main2Activity)getActivity()).setUser(user);
-                    finish();
+                    //main2Activity.setUser(user);
+                    Main2Activity.instance.setUser(user);
+                    Intent intent = new Intent(UpdatePersonDetail.this,Main2Activity.class);
+                    intent.putExtra("user",user);
+                    startActivity(intent);
+//                    finish();
                 }
             }
         }
