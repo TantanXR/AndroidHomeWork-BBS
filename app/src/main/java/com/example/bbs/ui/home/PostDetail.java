@@ -71,6 +71,7 @@ public class PostDetail  extends AppCompatActivity {
         post_content.setText(post.getContent());
         recent_update_time.setText("最近更新:"+post.getRecentUpdateTime());
         user=(User)intent.getSerializableExtra("user");
+        show_comment.setImageResource(R.drawable.comment_green);
     }
 
     void addComment(){

@@ -57,10 +57,8 @@ public class MyPostShow extends AppCompatActivity {
 
     void init(){
         cancel=findViewById(R.id.cancel);
-
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
-
         SQLiteOpenHelper helper = PostSqliteOpenHelper.getMInstance(this);
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from posts",null);

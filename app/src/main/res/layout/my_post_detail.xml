@@ -107,16 +107,37 @@
         android:layout_gravity="right"
         tools:srcCompat="@drawable/comment_green" />
 
-    <Button
-        android:id="@+id/update_myPost"
-        android:layout_width="500px"
-        android:layout_height="120px"
-        android:layout_gravity="center"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@drawable/round_button"
-        android:text="修改帖子内容"
-        android:textSize="50px"
-        />
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/delete_myPost"
+            android:layout_width="420px"
+            android:layout_height="130px"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/round_button"
+            android:text="删除帖子"
+            android:textSize="50px"
+            />
+
+        <Button
+            android:id="@+id/update_myPost"
+            android:layout_width="420px"
+            android:layout_height="130px"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/round_button"
+            android:text="修改帖子内容"
+            android:textSize="50px"
+            />
+
+    </LinearLayout>
 
 
 

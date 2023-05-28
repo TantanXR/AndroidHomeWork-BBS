@@ -36,9 +36,6 @@
                 android:layout_height="wrap_content"
                 android:text="XXXX:XX:XX"
                 android:textSize="15dp" />
-
-
-
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"
@@ -57,7 +54,6 @@
             android:id="@+id/post_content"
             android:inputType="textMultiLine">
         </TextView>
-
 
     </LinearLayout>
 

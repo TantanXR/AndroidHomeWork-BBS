@@ -42,7 +42,6 @@ public class MusicShow extends AppCompatActivity {
     private final String[] music_adult = {"碳碳","哇哦","小天才","哈哈","略略略","嘎嘎嘎"};
     private ProgressBar MusicPlayBar;
     private TextView alreadyMusicTime;
-    public static MusicShow instance = null;
     private TextView musicTime;
     private Boolean flag = false;
 
@@ -110,7 +109,7 @@ public class MusicShow extends AppCompatActivity {
     private void initData() {
         musics = new ArrayList<Music>();
         for (int i = 1; i <= 3; i++) {
-            musics.add(new Music("music_name"+i,"作者："+music_adult[i%6],music_path[i%3]));
+            musics.add(new Music("music_name"+i,music_adult[i%6],music_path[i%3]));
         }
         start_music = findViewById(R.id.start_music);
         Stop_Music = findViewById(R.id.Stop_Music);

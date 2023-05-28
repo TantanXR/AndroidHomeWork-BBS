@@ -1,13 +1,25 @@
 package com.example.bbs.ui.personal;
 
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bbs.R;
+import com.example.bbs.start;
 import com.example.bbs.ui.home.Post;
+import com.example.bbs.ui.login.Register;
+import com.example.bbs.ui.login.User;
+import com.example.bbs.ui.post.PostSqliteOpenHelper;
 
 import java.util.List;
 
