@@ -50,12 +50,14 @@ title __PERSONAL's Class Diagram__\n
     namespace ui.personal {
       class com.example.bbs.ui.personal.MyPostDetail {
           - cancel : Button
+          - delete_myPost : Button
           - post_content : TextView
           - post_createTime : TextView
           - post_title : TextView
           - recent_update_time : TextView
           - show_comment : ImageButton
           - update_myPost : Button
+          + deleteMyPost()
           # onCreate()
           ~ init()
       }

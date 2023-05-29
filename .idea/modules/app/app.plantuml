@@ -204,6 +204,46 @@ title __BBS.APP's Class Diagram__\n
   }
   
 
+  namespace com.example.bbs {
+    namespace ui.setting {
+      class com.example.bbs.ui.setting.Music {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.setting {
+      class com.example.bbs.ui.setting.MusicAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.setting {
+      class com.example.bbs.ui.setting.MusicShow {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.setting {
+      class com.example.bbs.ui.setting.MusicSqliteOpenHelper {
+      }
+    }
+  }
+  
+
+  namespace com.example.bbs {
+    namespace ui.setting {
+      class com.example.bbs.ui.setting.SettingFragment {
+      }
+    }
+  }
+  
+
   com.example.bbs.Main2Activity -up-|> androidx.appcompat.app.AppCompatActivity
   com.example.bbs.Main2Activity o-- com.example.bbs.ui.login.User : user
   com.example.bbs.Main2Activity o-- com.example.bbs.databinding.ActivityMainBinding : binding
@@ -242,6 +282,11 @@ title __BBS.APP's Class Diagram__\n
   com.example.bbs.ui.post.PostFragment -up-|> androidx.fragment.app.Fragment
   com.example.bbs.ui.post.PostFragment o-- com.example.bbs.ui.login.User : user
   com.example.bbs.ui.post.PostSqliteOpenHelper -up-|> android.database.sqlite.SQLiteOpenHelper
+  com.example.bbs.ui.setting.MusicAdapter -up-|> android.widget.BaseAdapter
+  com.example.bbs.ui.setting.MusicShow -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.bbs.ui.setting.MusicSqliteOpenHelper -up-|> android.database.sqlite.SQLiteOpenHelper
+  com.example.bbs.ui.setting.SettingFragment -up-|> androidx.fragment.app.Fragment
+  com.example.bbs.ui.setting.SettingFragment o-- com.example.bbs.ui.login.User : user
 
 
 right footer

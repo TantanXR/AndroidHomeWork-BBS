@@ -4,6 +4,9 @@ title __BBS's Class Diagram__\n
 
   namespace com.example.bbs {
     class com.example.bbs.Main2Activity {
+        {static} + instance : Main2Activity
+        {static} + mediaPlayer : MediaPlayer
+        {static} + thread : Thread
         - mAppBarConfiguration : AppBarConfiguration
         - user_content : TextView
         - user_icon : ImageView
