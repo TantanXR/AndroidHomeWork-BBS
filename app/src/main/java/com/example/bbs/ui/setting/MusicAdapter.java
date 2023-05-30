@@ -54,6 +54,4 @@ public class MusicAdapter extends BaseAdapter {
 
         return view;
     }
-
 }
-

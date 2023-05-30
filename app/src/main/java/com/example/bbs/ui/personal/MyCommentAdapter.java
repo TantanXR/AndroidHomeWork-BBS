@@ -68,13 +68,11 @@ public class MyCommentAdapter extends BaseAdapter {
             public void onClick(View v) {
                 SQLiteOpenHelper helper = CommentSqliteOpenHelper.getMInstance(view.getContext());
                 SQLiteDatabase db = helper.getReadableDatabase();
-                if (user.getUserName().equals(comment.getUsername())){
-                    String sql = "delete from comments where _commentContent = ? and _createTime = ? ";
-                    db.execSQL(sql,new Object[]{comment.getCommentContent(),comment.getCreateTime()});
-                    Toast.makeText(view.getContext(),"删除成功",Toast.LENGTH_SHORT).show();
-                    data.remove(position);
-                    MyCommentDetail.instance.setCommentsDate(data);
-                }
+                String sql = "delete from comments where _commentContent = ? and _createTime = ? ";
+                db.execSQL(sql,new Object[]{comment.getCommentContent(),comment.getCreateTime()});
+                Toast.makeText(view.getContext(),"删除成功",Toast.LENGTH_SHORT).show();
+                data.remove(position);
+                MyCommentDetail.instance.setCommentsDate(data);
             }
         });
         return view;

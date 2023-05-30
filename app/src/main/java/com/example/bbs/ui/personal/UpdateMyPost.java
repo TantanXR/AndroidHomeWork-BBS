@@ -82,25 +82,12 @@ public class UpdateMyPost extends AppCompatActivity {
                     Toast.makeText(this,"请输入修改后的帖子正文",Toast.LENGTH_SHORT).show();
             }
             else{
-                boolean flag = false;
-                Cursor cursor = database.rawQuery("select * from posts",null);
-                while (cursor.moveToNext()) {
-                    String _title = cursor.getString(cursor.getColumnIndex("_title"));
-                    if (_title.equals(got_title)){
-                        Toast.makeText(this,"标题重复，请重新想一个标题",Toast.LENGTH_SHORT).show();
-                        title.setText("");
-                        flag=true;
-                    }
-                }
-                if (flag==false){
-                    String sql = "update posts set _title=?,_content=?,_recentUpdateTime=? where _title=?";
-                    String got_updateTime = getNowTime();
-                    database.execSQL(sql,new Object[]{got_title,got_content,getNowTime(),post.getTitle()});
-                    Toast.makeText(this,"修改成功",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(UpdateMyPost.this,MyPostShow.class);
-                    intent.putExtra("user",user);
-                    startActivity(intent);
-                }
+                String sql = "update posts set _title=?,_content=?,_recentUpdateTime=? where _title=?";
+                database.execSQL(sql,new Object[]{got_title,got_content,getNowTime(),post.getTitle()});
+                Toast.makeText(this,"修改成功",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(UpdateMyPost.this,MyPostShow.class);
+                intent.putExtra("user",user);
+                startActivity(intent);
             }
         }
         database.close();

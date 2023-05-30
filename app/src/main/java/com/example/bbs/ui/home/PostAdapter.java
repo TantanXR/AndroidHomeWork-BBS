@@ -56,5 +56,4 @@ public class PostAdapter extends BaseAdapter {
         post_createTime.setText(post.getCreateTime());
         return view;
     }
-
 }

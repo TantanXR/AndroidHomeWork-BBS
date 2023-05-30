@@ -15,35 +15,27 @@ public class Comment implements Serializable {
         this.createTime = createTime;
         this.username = username;
     }
-
     public String getPostTitle() {
         return postTitle;
     }
-
     public void setPostTitle(String postTitle) {
         this.postTitle = postTitle;
     }
-
     public String getCommentContent() {
         return commentContent;
     }
-
     public void setCommentContent(String commentContent) {
         this.commentContent = commentContent;
     }
-
     public String getCreateTime() {
         return createTime;
     }
-
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
-
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }

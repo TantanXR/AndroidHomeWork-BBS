@@ -17,43 +17,33 @@ public class Post implements Serializable {
         this.content = content;
         this.recentUpdateTime = recentUpdateTime;
     }
-
     public String getRecentUpdateTime() {
         return recentUpdateTime;
     }
-
     public void setRecentUpdateTime(String recentUpdateTime) {
         this.recentUpdateTime = recentUpdateTime;
     }
-
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
-
     public String getWrite() {
         return write;
     }
-
     public void setWrite(String write) {
         this.write = write;
     }
-
     public String getCreateTime() {
         return createTime;
     }
-
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
-
     public String getContent() {
         return content;
     }
-
     public void setContent(String content) {
         this.content = content;
     }

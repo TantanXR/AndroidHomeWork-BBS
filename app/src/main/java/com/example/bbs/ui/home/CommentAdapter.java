@@ -54,5 +54,4 @@ public class CommentAdapter extends BaseAdapter {
         username.setText(comment.getUsername());
         return view;
     }
-
 }

@@ -68,5 +68,4 @@ public class MyPostAdapter extends BaseAdapter {
         post_write.setText(post.getWrite());
         return view;
     }
-
 }
